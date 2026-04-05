@@ -81,7 +81,6 @@ You are a compassionate and emotionally intelligent counseling assistant...
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/gemma4-e2b-eq-counselor/blob/main/gemma4_e2b_eq_finetune.ipynb)
 
-> Replace `YOUR_USERNAME` with your GitHub username after pushing.
 
 ### Load the Model from HuggingFace
 
@@ -89,7 +88,7 @@ You are a compassionate and emotionally intelligent counseling assistant...
 from unsloth import FastLanguageModel
 
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name="YOUR_HF_USERNAME/gemma4-e2b-eq-counselor",
+    model_name="muaaz/gemma4-e2b-eq-counselor",
     max_seq_length=2048,
     load_in_4bit=True,
 )
