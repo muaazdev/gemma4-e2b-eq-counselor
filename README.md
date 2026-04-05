@@ -192,5 +192,3 @@ This model is for **research and educational purposes only**. It is **not a subs
 ## 📄 License
 
 This project is licensed under the [Apache License 2.0](LICENSE).
-
----
