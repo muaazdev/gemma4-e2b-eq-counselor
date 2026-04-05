@@ -1,0 +1,29 @@
+# Model outputs
+outputs_gemma4_eq/
+gemma4-e2b-eq-lora/
+gemma4-e2b-eq-gguf/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environment
+.env
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (too large for git)
+*.csv
+*.jsonl

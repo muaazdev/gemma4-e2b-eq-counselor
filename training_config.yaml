@@ -1,0 +1,59 @@
+# Gemma 4 E2B — Empathetic Counseling Fine-Tuning Config
+# Hardware: Google Colab T4 (16GB VRAM)
+
+model:
+  name: "unsloth/Gemma-4-E2B-it"
+  max_seq_length: 2048
+  load_in_4bit: true
+  use_gradient_checkpointing: "unsloth"
+
+lora:
+  r: 16
+  lora_alpha: 16
+  lora_dropout: 0
+  bias: "none"
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+training:
+  max_steps: 200
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 5e-5
+  lr_scheduler_type: "cosine"
+  warmup_steps: 20
+  optim: "adamw_8bit"
+  weight_decay: 0.01
+  max_grad_norm: 0.3
+  fp16: false
+  bf16: false
+  packing: false
+  seed: 3407
+
+dataset:
+  name: "ShenLab/MentalChat16K"
+  total_samples: 16052
+  splits:
+    synthetic: 9774   # GPT-3.5 generated counseling conversations
+    interview: 6278   # Real clinical trial transcripts (PISCES)
+  format: "chat"       # system / user / assistant
+  min_length_filter: 20
+
+system_prompt: >
+  You are a compassionate and emotionally intelligent counseling assistant.
+  You provide empathetic, supportive, and non-judgmental responses to people
+  seeking help with mental health challenges including anxiety, depression,
+  relationships, grief, and emotional wellbeing. You listen actively, validate
+  feelings, and offer constructive coping strategies. You respond in the same
+  language the user writes in.
+
+export:
+  lora_dir: "gemma4-e2b-eq-lora"
+  gguf_quantization: "q4_k_m"
+  hub_repo: "YOUR_HF_USERNAME/gemma4-e2b-eq-counselor"
